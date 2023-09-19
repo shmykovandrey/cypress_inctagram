@@ -39,4 +39,23 @@ describe("template spec", () => {
     });
     cy.request("DELETE", "https://instagramm-backend.vercel.app/user/delete");
   });
+
+  it("registationWithNoNameRequired", () => {
+    cy.location("pathname").should("eq", "/sign-in");
+    cy.get("a").contains("Sign Up").as("goToRegistration").click();
+    cy.wait(1000).location("pathname").should("eq", "/sign-up");
+    cy.get("input[name=userName]").click();
+    cy.get("input[name=email]").type("trololo@gmail.com");
+    cy.get("p").contains("Username is required").should("exist");
+  });
+
+  it("registationWithNoEmailRequired", () => {
+    cy.location("pathname").should("eq", "/sign-in");
+    cy.get("a").contains("Sign Up").as("goToRegistration").click();
+    cy.wait(1000).location("pathname").should("eq", "/sign-up");
+    cy.get("input[name=userName]").type("trololo");
+    cy.get("input[name=email]").click();
+    cy.get("input[name='password.password']").type("qweqweqwe");
+    cy.get("p").contains("Email is required").should("exist");
+  });
 });
