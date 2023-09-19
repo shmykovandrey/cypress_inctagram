@@ -1,5 +1,6 @@
 {
   "name": "cypress",
+  "baseUrl":"https://inst-project.vercel.app/",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
