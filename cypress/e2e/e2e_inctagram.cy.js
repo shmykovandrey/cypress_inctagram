@@ -1,5 +1,5 @@
 beforeEach(() => {
-  cy.visit("https://inst-project.vercel.app/");
+  cy.visit("/");
   cy.get("#__next").should("be.visible");
 });
 describe("template spec", () => {
@@ -17,7 +17,7 @@ describe("template spec", () => {
     cy.get("input[name='password.confirmPassword']").type("qweqweqwe");
     cy.get("button[role=checkbox]").click();
     cy.get("button[type=submit]").click();
-    cy.wait(4000);
+    // cy.wait(4000);
     cy.get("p").should(
       "contain",
       "We have sent a link to confirm your email to"
@@ -28,7 +28,7 @@ describe("template spec", () => {
     cy.get("input[name=userName]").type("trololo");
     cy.get("input[name=password]").type("qweqweqwe");
     cy.get("button[type=submit]").click();
-    cy.wait(5000);
+    // cy.wait(5000);
     cy.location("pathname").should("eq", "/profile");
   });
 
@@ -43,7 +43,8 @@ describe("template spec", () => {
   it("registationWithNoNameRequired", () => {
     cy.location("pathname").should("eq", "/sign-in");
     cy.get("a").contains("Sign Up").as("goToRegistration").click();
-    cy.wait(1000).location("pathname").should("eq", "/sign-up");
+    // cy.wait(1000);
+    cy.location("pathname").should("eq", "/sign-up");
     cy.get("input[name=userName]").click();
     cy.get("input[name=email]").type("trololo@gmail.com");
     cy.get("p").contains("Username is required").should("exist");
@@ -52,7 +53,8 @@ describe("template spec", () => {
   it("registationWithNoEmailRequired", () => {
     cy.location("pathname").should("eq", "/sign-in");
     cy.get("a").contains("Sign Up").as("goToRegistration").click();
-    cy.wait(1000).location("pathname").should("eq", "/sign-up");
+    // cy.wait(1000)
+    cy.location("pathname").should("eq", "/sign-up");
     cy.get("input[name=userName]").type("trololo");
     cy.get("input[name=email]").click();
     cy.get("input[name='password.password']").type("qweqweqwe");

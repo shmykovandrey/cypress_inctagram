@@ -4,6 +4,12 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "scripts": {
+    "chrome":"npx cypress run --browser chrome",
+    "electron":"npx cypress run",
+    "firefox":"npx cypress run --browser firefox"
+
+  },
   "dependencies": {
     "cypress": "^13.2.0"
   }
